@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.restaurantordersystem.controllers.ReportsController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Report Filters -->
+    <HBox spacing="20">
+        <DatePicker fx:id="startDate" promptText="Start Date"/>
+        <DatePicker fx:id="endDate" promptText="End Date"/>
+        <ComboBox fx:id="reportType" promptText="Report Type">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Sales Report"/>
+                    <String fx:value="Popular Items"/>
+                    <String fx:value="Table Usage"/>
+                    <String fx:value="Revenue Analysis"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Button text="Generate Report" onAction="#handleGenerateReport"/>
+    </HBox>
+
+    <!-- Report Content -->
+    <VBox styleClass="card" VBox.vgrow="ALWAYS">
+        <TableView fx:id="reportTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="dateColumn" text="Date"/>
+                <TableColumn fx:id="itemColumn" text="Item"/>
+                <TableColumn fx:id="quantityColumn" text="Quantity"/>
+                <TableColumn fx:id="revenueColumn" text="Revenue"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Summary Section -->
+    <HBox spacing="20">
+        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+            <Label text="Total Revenue" styleClass="title-label"/>
+            <Label fx:id="totalRevenue" text="$0.00" style="-fx-font-size: 24px;"/>
+        </VBox>
+        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+            <Label text="Total Orders" styleClass="title-label"/>
+            <Label fx:id="totalOrders" text="0" style="-fx-font-size: 24px;"/>
+        </VBox>
+        <VBox styleClass="card" HBox.hgrow="ALWAYS">
+            <Label text="Average Order Value" styleClass="title-label"/>
+            <Label fx:id="averageOrderValue" text="$0.00" style="-fx-font-size: 24px;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Export Options -->
+    <HBox spacing="20">
+        <Button text="Export to PDF" onAction="#handleExportPDF" HBox.hgrow="ALWAYS"/>
+        <Button text="Export to Excel" onAction="#handleExportExcel" HBox.hgrow="ALWAYS"/>
+        <Button text="Print Report" onAction="#handlePrintReport" HBox.hgrow="ALWAYS"/>
+    </HBox>
+</VBox> 

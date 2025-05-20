@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.restaurantordersystem.controllers.SettingsController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Restaurant Information -->
+    <VBox styleClass="card">
+        <Label text="Restaurant Information" styleClass="title-label"/>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Restaurant Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="restaurantName" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            
+            <Label text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            
+            <Label text="Phone:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            
+            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+    </VBox>
+
+    <!-- System Settings -->
+    <VBox styleClass="card">
+        <Label text="System Settings" styleClass="title-label"/>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Currency:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="currency" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="USD"/>
+                        <String fx:value="EUR"/>
+                        <String fx:value="GBP"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            
+            <Label text="Tax Rate (%):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="taxRate" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            
+            <Label text="Receipt Header:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextArea fx:id="receiptHeader" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            
+            <Label text="Receipt Footer:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextArea fx:id="receiptFooter" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Save Button -->
+    <HBox spacing="20">
+        <Button text="Save Settings" onAction="#handleSaveSettings" HBox.hgrow="ALWAYS"/>
+        <Button text="Reset to Default" onAction="#handleResetSettings" HBox.hgrow="ALWAYS"/>
+    </HBox>
+</VBox> 

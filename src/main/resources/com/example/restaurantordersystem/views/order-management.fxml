@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox spacing="20" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.restaurantordersystem.controllers.OrderManagementController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Left Panel - Active Orders -->
+    <VBox spacing="20" HBox.hgrow="ALWAYS">
+        <Label text="Active Orders" styleClass="title-label"/>
+        
+        <!-- Order Filter -->
+        <HBox spacing="10">
+            <ComboBox fx:id="statusFilter" promptText="Status"/>
+            <TextField fx:id="searchField" promptText="Search orders..." HBox.hgrow="ALWAYS"/>
+            <Button text="Search" onAction="#handleSearch"/>
+        </HBox>
+
+        <!-- Orders Table -->
+        <TableView fx:id="ordersTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="orderIdColumn" text="Order ID"/>
+                <TableColumn fx:id="tableNumberColumn" text="Table"/>
+                <TableColumn fx:id="itemsColumn" text="Items"/>
+                <TableColumn fx:id="totalColumn" text="Total"/>
+                <TableColumn fx:id="statusColumn" text="Status"/>
+                <TableColumn fx:id="timeColumn" text="Time"/>
+                <TableColumn fx:id="actionsColumn" text="Actions"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Right Panel - Order Details -->
+    <VBox spacing="20" prefWidth="400">
+        <Label text="Order Details" styleClass="title-label"/>
+        
+        <!-- Order Information -->
+        <VBox styleClass="card" spacing="10">
+            <Label text="Order #" fx:id="orderIdLabel"/>
+            <Label text="Table #" fx:id="tableNumberLabel"/>
+            <Label text="Status" fx:id="orderStatusLabel"/>
+            <Label text="Time" fx:id="orderTimeLabel"/>
+        </VBox>
+
+        <!-- Order Items -->
+        <VBox styleClass="card" spacing="10">
+            <Label text="Items" styleClass="title-label"/>
+            <ListView fx:id="orderItemsList" VBox.vgrow="ALWAYS"/>
+            <Label text="Total:" fx:id="orderTotalLabel" style="-fx-font-weight: bold;"/>
+        </VBox>
+
+        <!-- Order Actions -->
+        <VBox spacing="10">
+            <Button text="Update Status" onAction="#handleUpdateStatus" HBox.hgrow="ALWAYS"/>
+            <Button text="Print Bill" onAction="#handlePrintBill" HBox.hgrow="ALWAYS"/>
+            <Button text="Close Order" onAction="#handleCloseOrder" style="-fx-background-color: #e74c3c;" HBox.hgrow="ALWAYS"/>
+        </VBox>
+    </VBox>
+
+    <!-- New Order Dialog -->
+    <fx:define>
+    <Dialog fx:id="newOrderDialog" title="New Order">
+        <dialogPane>
+          <DialogPane>
+              <content>
+                  <GridPane hgap="10" vgap="10">
+                      <Label text="Table Number:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                      <ComboBox fx:id="tableNumberCombo" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                      <Label text="Items:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                      <TableView fx:id="menuItemsTable" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <columns>
+                              <TableColumn fx:id="itemNameColumn" text="Name"/>
+                              <TableColumn fx:id="itemPriceColumn" text="Price"/>
+                              <TableColumn fx:id="itemQuantityColumn" text="Quantity"/>
+                          </columns>
+                      </TableView>
+                  </GridPane>
+              </content>
+            <buttonTypes>
+                <ButtonType fx:constant="OK"/>
+                <ButtonType fx:constant="CANCEL"/>
+            </buttonTypes>
+          </DialogPane>
+        </dialogPane>
+    </Dialog>
+    </fx:define>
+</HBox> 

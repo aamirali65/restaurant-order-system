@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <?import javafx.scene.layout.*?>
+    <?import javafx.scene.control.*?>
+    <?import javafx.geometry.Insets?>
+    <?import javafx.collections.FXCollections?>
+
+    <VBox spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.example.restaurantordersystem.controllers.DashboardController">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <!-- Summary Cards -->
+        <HBox spacing="20">
+            <!-- Active Orders Card -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label text="Active Orders" styleClass="title-label"/>
+                <Label fx:id="activeOrdersCount" text="0" style="-fx-font-size: 36px;"/>
+            </VBox>
+
+            <!-- Available Tables Card -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label text="Available Tables" styleClass="title-label"/>
+                <Label fx:id="availableTablesCount" text="0" style="-fx-font-size: 36px;"/>
+            </VBox>
+
+            <!-- Today's Revenue Card -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label text="Today's Revenue" styleClass="title-label"/>
+                <Label fx:id="todayRevenue" text="0.00" style="-fx-font-size: 36px;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Recent Orders Table -->
+        <VBox styleClass="card" VBox.vgrow="ALWAYS">
+            <Label text="Recent Orders" styleClass="title-label"/>
+            <TableView fx:id="recentOrdersTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="orderIdColumn" text="Order ID"/>
+                    <TableColumn fx:id="tableNumberColumn" text="Table"/>
+                    <TableColumn fx:id="itemsColumn" text="Items"/>
+                    <TableColumn fx:id="totalColumn" text="Total"/>
+                    <TableColumn fx:id="statusColumn" text="Status"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Quick Actions -->
+        <HBox spacing="20">
+            <Button text="New Order" onAction="#handleNewOrder" HBox.hgrow="ALWAYS"/>
+            <Button text="View Menu" onAction="#handleViewMenu" HBox.hgrow="ALWAYS"/>
+            <Button text="Manage Tables" onAction="#handleManageTables" HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </VBox>

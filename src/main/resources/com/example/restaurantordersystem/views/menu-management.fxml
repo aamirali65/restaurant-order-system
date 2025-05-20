@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+
+<?import java.lang.String?>
+<VBox spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.restaurantordersystem.controllers.MenuManagementController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Label text="Menu Management" styleClass="title-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Add Item" onAction="#handleAddItem"/>
+    </HBox>
+
+    <!-- Search and Filter -->
+    <HBox spacing="20">
+        <TextField fx:id="searchField" promptText="Search items..." HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="categoryFilter" promptText="Filter by category">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="All Categories"/>
+                    <String fx:value="Appetizers"/>
+                    <String fx:value="Main Courses"/>
+                    <String fx:value="Desserts"/>
+                    <String fx:value="Beverages"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </HBox>
+
+    <!-- Menu Items Table -->
+    <TableView fx:id="menuTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Name"/>
+            <TableColumn fx:id="descriptionColumn" text="Description"/>
+            <TableColumn fx:id="priceColumn" text="Price"/>
+            <TableColumn fx:id="categoryColumn" text="Category"/>
+            <TableColumn fx:id="availableColumn" text="Available"/>
+            <TableColumn fx:id="actionsColumn" text="Actions"/>
+        </columns>
+    </TableView>
+
+    <!-- Item Dialog -->
+    <fx:define>
+        <Dialog fx:id="itemDialog" title="Menu Item">
+            <dialogPane>
+                <DialogPane>
+                    <content>
+                        <GridPane hgap="10" vgap="10">
+                            <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                            <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                            
+                            <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                            <TextArea fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            
+                            <Label text="Price:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                            <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                            
+                            <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                            <ComboBox fx:id="categoryField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Appetizers"/>
+                                        <String fx:value="Main Courses"/>
+                                        <String fx:value="Desserts"/>
+                                        <String fx:value="Beverages"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                            
+                            <Label text="Available:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                            <CheckBox fx:id="availableField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        </GridPane>
+                    </content>
+                    <buttonTypes>
+                        <ButtonType fx:constant="OK"/>
+                        <ButtonType fx:constant="CANCEL"/>
+                    </buttonTypes>
+                </DialogPane>
+            </dialogPane>
+        </Dialog>
+    </fx:define>
+</VBox> 

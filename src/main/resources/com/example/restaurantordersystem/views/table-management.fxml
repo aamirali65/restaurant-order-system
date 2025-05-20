@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.restaurantordersystem.controllers.TableManagementController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Table Management" styleClass="title-label"/>
+        <Button text="Add Table" onAction="#handleAddTable" style="-fx-background-color: #27ae60;"/>
+    </HBox>
+
+    <!-- Table Grid -->
+    <GridPane fx:id="tableGrid" hgap="20" vgap="20" VBox.vgrow="ALWAYS">
+        <!-- Tables will be added dynamically -->
+    </GridPane>
+
+    <!-- Table Details Dialog -->
+    <Dialog fx:id="tableDialog" title="Table Details">
+        <DialogPane>
+            <content>
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Table Number:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="tableNumberField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    
+                    <Label text="Capacity:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="capacityField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    
+                    <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <ComboBox fx:id="statusField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                </GridPane>
+            </content>
+            <buttonTypes>
+                <ButtonType text="Save" ButtonBar.ButtonData.OK_DONE/>
+                <ButtonType text="Cancel" ButtonBar.ButtonData.CANCEL_CLOSE/>
+            </buttonTypes>
+        </DialogPane>
+    </Dialog>
+
+    <!-- Table Status Legend -->
+    <HBox spacing="20" alignment="CENTER">
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Rectangle width="20" height="20" fill="#27ae60"/>
+            <Label text="Available"/>
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Rectangle width="20" height="20" fill="#e74c3c"/>
+            <Label text="Occupied"/>
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Rectangle width="20" height="20" fill="#f39c12"/>
+            <Label text="Reserved"/>
+        </HBox>
+    </HBox>
+</VBox> 
